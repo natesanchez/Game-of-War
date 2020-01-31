@@ -20,7 +20,7 @@ let createDeck = () => {
 //Create Deck End
 
 
-//Shuffle
+//Shuffle (cardDeck)
 let shuffle = (arr) => {
     for (let i = arr.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
@@ -28,3 +28,24 @@ let shuffle = (arr) => {
     }
 }
 //End Shuffle
+
+//Assign Player Decks
+let assignDecks = () => {
+	playerOneDeck = cardDeck.slice(0,26);
+	playerTwoDeck = cardDeck.slice(26);
+}
+//End Assign Decks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
