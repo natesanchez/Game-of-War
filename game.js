@@ -16,9 +16,9 @@ let createDeck = () => {
 		}
 	}
 }
-
-
 //Create-Deck-End
+
+
 //Shuffle (cardDeck) [Fisher-Yates Shuffle ES6]
 let shuffle = (arr) => {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -85,7 +85,7 @@ let checkForWinner = () => {
 
 //WAR
 let war = () => {
-	console.log("****IT'S WAR!!****")
+	console.log("***********IT'S WAR!!************")
 	if (playerOneDeck.length < 4) {
 		console.log(`********Player 1 only has ${playerOneDeck.length} cards and thus does not have enough cards to continue. Player 2 has WON! GAME OVER!!********`)
 	} else if (playerTwoDeck.length < 4) {
@@ -135,22 +135,5 @@ createDeck();
 shuffle(cardDeck);
 assignDecks();
 tableArena();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
