@@ -17,7 +17,7 @@ let createDeck = () => {
 	}
 }
 //Create-Deck-End
-
+createDeck();
 
 //Shuffle (cardDeck) [Fisher-Yates Shuffle ES6]
 let shuffle = (arr) => {
@@ -27,7 +27,7 @@ let shuffle = (arr) => {
     }
 }
 //End-Shuffle
-
+shuffle(cardDeck);
 
 //Assign-Player-Decks
 let assignDecks = () => {
@@ -35,7 +35,7 @@ let assignDecks = () => {
 	playerTwoDeck = cardDeck.slice(26);
 }
 //End-Assign-Decks
-
+assignDecks();
 
 //Where-Game-is-Played
 let tableArena = () => {
@@ -129,17 +129,5 @@ let war = () => {
 	}
 }
 //End-War
-
-
-//This-function-starts-the-game.
-let play = () => {
-createDeck();
-shuffle(cardDeck);
-assignDecks();
 tableArena();
-}
-//End
-
-play();
-
 
