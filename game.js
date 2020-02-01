@@ -44,13 +44,13 @@ let tableArena = () => {
 		playerOneDeck.push(playerOneActive[0], playerTwoActive[0]);
 		playerOneActive = [];
 		playerTwoActive = [];
-		console.log(`****Player 1 wins this round and now has ${playerOneDeck.length} cards!**** | Player 2 has ${playerTwoDeck.length} cards.`);
+		console.log(`**Player 1 wins this round and now has ${playerOneDeck.length} cards!** | Player 2 has ${playerTwoDeck.length} cards.`);
 		checkForWinner();
 	} else if (playerTwoActive[0].rank > playerOneActive[0].rank) {
 		playerTwoDeck.push(playerOneActive[0],playerTwoActive[0]);
 		playerOneActive = [];
 		playerTwoActive = [];
-		console.log(`****Player 2 wins this round and now has ${playerTwoDeck.length} cards!**** | Player 1 has ${playerOneDeck.length} cards.`);
+		console.log(`**Player 2 wins this round and now has ${playerTwoDeck.length} cards!** | Player 1 has ${playerOneDeck.length} cards.`);
 		checkForWinner();
 	} else {
 		war();
@@ -87,9 +87,9 @@ let checkForWinner = () => {
 let war = () => {
 	console.log("****IT'S WAR!!****")
 	if (playerOneDeck.length < 4) {
-		console.log(`**Player 1 only has ${playerOneDeck.length} cards and does not have enough cards to continue. Player 2 has WON! GAME OVER!!**`)
+		console.log(`********Player 1 only has ${playerOneDeck.length} cards and thus does not have enough cards to continue. Player 2 has WON! GAME OVER!!********`)
 	} else if (playerTwoDeck.length < 4) {
-		console.log(`**Player 2 only has ${playerTWoDeck.length} cards and does not have enough cards to continue. Player 1 has WON! GAME OVER!!**`)
+		console.log(`********Player 2 only has ${playerTwoDeck.length} cards and thus does not have enough cards to continue. Player 1 has WON! GAME OVER!!********`)
 	} else {
 	playerOneActive.unshift(playerOneDeck[0])
 	playerOneDeck.shift();
@@ -115,13 +115,13 @@ let war = () => {
 		playerOneDeck.push(...playerOneActive, ...playerTwoActive);
 		playerOneActive = [];
 		playerTwoActive = [];
-		console.log(`****Player 1 has won the war now has ${playerOneDeck.length} cards!**** | Player 2 has ${playerTwoDeck.length} cards.`);
+		console.log(`**Player 1 has won the war now has ${playerOneDeck.length} cards!** | Player 2 has ${playerTwoDeck.length} cards.`);
 		checkForWinner();
 	} else if (playerTwoActive[0].rank > playerOneActive[0].rank) {
 		playerTwoDeck.push(...playerOneActive,...playerTwoActive);
 		playerOneActive = [];
 		playerTwoActive = [];
-		console.log(`****Player 2 has won the war and now has ${playerTwoDeck.length} cards!**** | Player 1 has ${playerOneDeck.length} cards.`);
+		console.log(`**Player 2 has won the war and now has ${playerTwoDeck.length} cards!** | Player 1 has ${playerOneDeck.length} cards.`);
 		checkForWinner();
 	} else {
 		war();
