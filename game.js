@@ -37,22 +37,59 @@ let assignDecks = () => {
 }
 //End-Assign-Decks
 
+//Where-Game-is-Played
+let tableArena = () => {
+	flipPlayerCards();
+	if (playerOneActive[0].rank > playerTwoActive[0].rank) {
+		playerOneDeck.push(playerOneActive[0], playerTwoActive[0]);
+		playerOneActive = [];
+		playerTwoActive = [];
+		console.log(`****Player 1 wins this round and now has ${playerOneDeck.length} cards!****`);
+		checkForWinner();
+	} else if (playerTwoActive[0].rank > playerOneActive[0].rank) {
+		playerTwoDeck.push(playerOneActive[0],playerTwoActive[0]);
+		playerOneActive = [];
+		playerTwoActive = [];
+		console.log(`****Player 2 wins this round and now has ${playerTwoDeck.length} cards!****`);
+		checkForWinner();
+	} else {
+		war();
+	}
+}
+//
+
 //Card-Flips
 let flipPlayerCards = () => {
-	playerOneActive.unshift(playerOneDeck[0])
+	playerOneActive.push(playerOneDeck[0])
 	playerOneDeck.shift();
-	playerTwoActive.unshift(playerTwoDeck[0])
+	playerTwoActive.push(playerTwoDeck[0])
 	playerTwoDeck.shift();
-	console.log(`Player One flipped a ${playerOneActive[0].value} of ${playerOneActive[0].suit} and Player Two flipped a ${playerTwoActive[0].value} of ${playerTwoActive[0].suit}`)
+	console.log(`Player 1 flipped a ${playerOneActive[0].value} of ${playerOneActive[0].suit} and Player 2 flipped a ${playerTwoActive[0].value} of ${playerTwoActive[0].suit}`)
 }
 //End-Card-Flips
+
+//Check-for-Winner
+let checkForWinner = () => {
+	if (playerOneDeck.length===52) {
+		console.log("Player 1 has WON! GAME OVER!!")
+	} else if (playerTwoDeck.length===52) {
+		console.log("Player 2 has WON! GAME OVER!!")
+	} else {
+		tableArena();
+	}
+}
+//End-Check-for-Winner
+
+let war = () => {
+	console.log("IT'S WAR!!!!")
+}
 
 
 
 createDeck();
 shuffle(cardDeck);
 assignDecks();
-flipPlayerCards();
+tableArena();
 
 
 
