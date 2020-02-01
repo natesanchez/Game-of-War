@@ -131,9 +131,15 @@ let war = () => {
 //End-War
 
 
+//This-function-starts-the-game.
+let play = () => {
 createDeck();
 shuffle(cardDeck);
 assignDecks();
 tableArena();
+}
+//End
+
+play();
 
 
