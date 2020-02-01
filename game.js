@@ -7,7 +7,6 @@ let playerOneActive = [];
 let playerTwoActive = [];
 
 
-
 //Deck-Creation
 let createDeck = () => {
 	for (let i=0; i<cardValues.length; i++) {
@@ -17,9 +16,9 @@ let createDeck = () => {
 		}
 	}
 }
+
+
 //Create-Deck-End
-
-
 //Shuffle (cardDeck) [Fisher-Yates Shuffle ES6]
 let shuffle = (arr) => {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -37,6 +36,7 @@ let assignDecks = () => {
 }
 //End-Assign-Decks
 
+
 //Where-Game-is-Played
 let tableArena = () => {
 	flipPlayerCards();
@@ -44,19 +44,20 @@ let tableArena = () => {
 		playerOneDeck.push(playerOneActive[0], playerTwoActive[0]);
 		playerOneActive = [];
 		playerTwoActive = [];
-		console.log(`****Player 1 wins this round and now has ${playerOneDeck.length} cards!****`);
+		console.log(`****Player 1 wins this round and now has ${playerOneDeck.length} cards!**** | Player 2 has ${playerTwoDeck.length} cards.`);
 		checkForWinner();
 	} else if (playerTwoActive[0].rank > playerOneActive[0].rank) {
 		playerTwoDeck.push(playerOneActive[0],playerTwoActive[0]);
 		playerOneActive = [];
 		playerTwoActive = [];
-		console.log(`****Player 2 wins this round and now has ${playerTwoDeck.length} cards!****`);
+		console.log(`****Player 2 wins this round and now has ${playerTwoDeck.length} cards!**** | Player 1 has ${playerOneDeck.length} cards.`);
 		checkForWinner();
 	} else {
 		war();
 	}
 }
-//
+//End-Where-Game-is-Played
+
 
 //Card-Flips
 let flipPlayerCards = () => {
@@ -67,6 +68,7 @@ let flipPlayerCards = () => {
 	console.log(`Player 1 flipped a ${playerOneActive[0].value} of ${playerOneActive[0].suit} and Player 2 flipped a ${playerTwoActive[0].value} of ${playerTwoActive[0].suit}`)
 }
 //End-Card-Flips
+
 
 //Check-for-Winner
 let checkForWinner = () => {
@@ -80,10 +82,53 @@ let checkForWinner = () => {
 }
 //End-Check-for-Winner
 
-let war = () => {
-	console.log("IT'S WAR!!!!")
-}
 
+//WAR
+let war = () => {
+	console.log("****IT'S WAR!!****")
+	if (playerOneDeck.length < 4) {
+		console.log(`**Player 1 only has ${playerOneDeck.length} cards and does not have enough cards to continue. Player 2 has WON! GAME OVER!!**`)
+	} else if (playerTwoDeck.length < 4) {
+		console.log(`**Player 2 only has ${playerTWoDeck.length} cards and does not have enough cards to continue. Player 1 has WON! GAME OVER!!**`)
+	} else {
+	playerOneActive.unshift(playerOneDeck[0])
+	playerOneDeck.shift();
+	playerTwoActive.unshift(playerTwoDeck[0])
+	playerTwoDeck.shift();
+	console.log(`Player 1 flipped a ${playerOneActive[0].value} of ${playerOneActive[0].suit} and Player 2 flipped a ${playerTwoActive[0].value} of ${playerTwoActive[0].suit} (--both faceDown--)`)
+	playerOneActive.unshift(playerOneDeck[0])
+	playerOneDeck.shift();
+	playerTwoActive.unshift(playerTwoDeck[0])
+	playerTwoDeck.shift();
+	console.log(`Player 1 flipped a ${playerOneActive[0].value} of ${playerOneActive[0].suit} and Player 2 flipped a ${playerTwoActive[0].value} of ${playerTwoActive[0].suit} (--both faceDown--)`)
+	playerOneActive.unshift(playerOneDeck[0])
+	playerOneDeck.shift();
+	playerTwoActive.unshift(playerTwoDeck[0])
+	playerTwoDeck.shift();
+	console.log(`Player 1 flipped a ${playerOneActive[0].value} of ${playerOneActive[0].suit} and Player 2 flipped a ${playerTwoActive[0].value} of ${playerTwoActive[0].suit} (--both faceDown--)`)
+		playerOneActive.unshift(playerOneDeck[0])
+	playerOneDeck.shift();
+	playerTwoActive.unshift(playerTwoDeck[0])
+	playerTwoDeck.shift();
+	console.log(`Player 1 flipped a ${playerOneActive[0].value} of ${playerOneActive[0].suit} and Player 2 flipped a ${playerTwoActive[0].value} of ${playerTwoActive[0].suit} (--both faceUp--)`)
+	if (playerOneActive[0].rank > playerTwoActive[0].rank) {
+		playerOneDeck.push(...playerOneActive, ...playerTwoActive);
+		playerOneActive = [];
+		playerTwoActive = [];
+		console.log(`****Player 1 has won the war now has ${playerOneDeck.length} cards!**** | Player 2 has ${playerTwoDeck.length} cards.`);
+		checkForWinner();
+	} else if (playerTwoActive[0].rank > playerOneActive[0].rank) {
+		playerTwoDeck.push(...playerOneActive,...playerTwoActive);
+		playerOneActive = [];
+		playerTwoActive = [];
+		console.log(`****Player 2 has won the war and now has ${playerTwoDeck.length} cards!**** | Player 1 has ${playerOneDeck.length} cards.`);
+		checkForWinner();
+	} else {
+		war();
+		}
+	}
+}
+//End-War
 
 
 createDeck();
