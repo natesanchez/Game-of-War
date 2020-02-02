@@ -59,9 +59,9 @@ let flipPlayerCards2 = () => {
 
 //Check-for-Winner
 let checkForWinner = () => {
-	if (playerOneDeck.length===52) {
+	if (playerOneDeck.length === 52) {
 		console.log("Player 1 has WON! GAME OVER!!")
-	} else if (playerTwoDeck.length===52) {
+	} else if (playerTwoDeck.length === 52) {
 		console.log("Player 2 has WON! GAME OVER!!")
 	} else {
 		tableArena();
@@ -74,14 +74,14 @@ let checkForWinner = () => {
 let tableArena = () => {
 	flipPlayerCards();
 	if (playerOneActive[0].rank > playerTwoActive[0].rank) {
-		playerOneDeck.push(...playerOneActive, ...playerTwoActive);
+		playerOneDeck.push(playerOneActive[0],playerTwoActive[0]);
 		playerOneActive = [];
 		playerTwoActive = [];
 		console.log(`  **Player 1 wins this round and now has ${playerOneDeck.length} cards!**`);
 		console.log(`  |Player 2 now has ${playerTwoDeck.length} cards.|`)
 		checkForWinner();
 	} else if (playerOneActive[0].rank < playerTwoActive[0].rank) {
-		playerTwoDeck.push(...playerOneActive, ...playerTwoActive);
+		playerTwoDeck.push(playerTwoActive[0],playerOneActive[0]);
 		playerOneActive = [];
 		playerTwoActive = [];
 		console.log(`  **Player 2 wins this round and now has ${playerTwoDeck.length} cards!**`);
@@ -102,12 +102,16 @@ let checkWar = () => {
 		playerTwoActive = [];
 		console.log(`****Player 1 won the War and now has ${playerOneDeck.length} cards!!****`)
 		console.log(`   |Player 2 now has ${playerTwoDeck.length} cards.|`)
+		checkForWinner();
 	} else if (playerOneActive[0].rank < playerTwoActive[0].rank) {
 		playerTwoDeck.push( ...playerTwoActive, ...playerOneActive);
 		playerOneActive = [];
 		playerTwoActive = [];
 		console.log(`****Player 2 won the War and now has ${playerTwoDeck.length} cards!!****`)
 		console.log(`   |Player 1 now has ${playerOneDeck.length} cards.|`)
+		checkForWinner();
+	} else {
+		war();
 	}
 }	
 //End-Check-War
@@ -119,7 +123,7 @@ let war = () => {
 	if (playerOneDeck.length < 4) {
 		console.log(`**Player 1 only has ${playerOneDeck.length} cards and does not have enough cards to continue. Player 2 has WON! GAME OVER!!**`)
 	} else if (playerTwoDeck.length < 4) {
-		console.log(`**Player 2 only has ${playerTWoDeck.length} cards and does not have enough cards to continue. Player 1 has WON! GAME OVER!!**`)
+		console.log(`**Player 2 only has ${playerTwoDeck.length} cards and does not have enough cards to continue. Player 1 has WON! GAME OVER!!**`)
 	} else {
 		flipPlayerCards2();
 		flipPlayerCards2();
