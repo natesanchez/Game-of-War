@@ -100,10 +100,14 @@ let checkWar = () => {
 		playerOneDeck.push( ...playerOneActive, ...playerTwoActive);
 		playerOneActive = [];
 		playerTwoActive = [];
+		console.log(`****Player 1 won the War and now has ${playerOneDeck.length} cards!!****`)
+		console.log(`   |Player 2 now has ${playerTwoDeck.length} cards.|`)
 	} else if (playerOneActive[0].rank < playerTwoActive[0].rank) {
 		playerTwoDeck.push( ...playerTwoActive, ...playerOneActive);
 		playerOneActive = [];
 		playerTwoActive = [];
+		console.log(`****Player 2 won the War and now has ${playerTwoDeck.length} cards!!****`)
+		console.log(`   |Player 1 now has ${playerOneDeck.length} cards.|`)
 	}
 }	
 //End-Check-War
@@ -111,7 +115,7 @@ let checkWar = () => {
 
 //WAR
 let war = () => {
-	console.log("*********WAR!*********")
+	console.log("***********WAR!***********")
 	if (playerOneDeck.length < 4) {
 		console.log(`**Player 1 only has ${playerOneDeck.length} cards and does not have enough cards to continue. Player 2 has WON! GAME OVER!!**`)
 	} else if (playerTwoDeck.length < 4) {
