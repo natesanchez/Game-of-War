@@ -43,10 +43,19 @@ let flipPlayerCards = () => {
 	playerOneDeck.shift();
 	playerTwoActive.unshift(playerTwoDeck[0])
 	playerTwoDeck.shift();
-	console.log(`Player 1 flipped a ${playerOneActive[0].value} of ${playerOneActive[0].suit} and Player 2 flipped a ${playerTwoActive[0].value} of ${playerTwoActive[0].suit}`)
+	console.log(`--Player 1 flipped a ${playerOneActive[0].value} of ${playerOneActive[0].suit} and Player 2 flipped a ${playerTwoActive[0].value} of ${playerTwoActive[0].suit}`)
 }
 //End-Card-Flips
 
+//Card-Flips-2
+let flipPlayerCards2 = () => {
+	playerOneActive.unshift(playerOneDeck[0])
+	playerOneDeck.shift();
+	playerTwoActive.unshift(playerTwoDeck[0])
+	playerTwoDeck.shift();
+	console.log(`--WAR--`)
+}
+//End-Card-Flips-2
 
 //Check-for-Winner
 let checkForWinner = () => {
@@ -65,18 +74,18 @@ let checkForWinner = () => {
 let tableArena = () => {
 	flipPlayerCards();
 	if (playerOneActive[0].rank > playerTwoActive[0].rank) {
-		playerOneDeck.push(playerOneActive[0], playerTwoActive[0]);
+		playerOneDeck.push(...playerOneActive, ...playerTwoActive);
 		playerOneActive = [];
 		playerTwoActive = [];
-		console.log(`**Player 1 wins this round and now has ${playerOneDeck.length} cards!**`);
-		console.log(`|Player 2 now has ${playerTwoDeck.length} cards.|`)
+		console.log(`  **Player 1 wins this round and now has ${playerOneDeck.length} cards!**`);
+		console.log(`  |Player 2 now has ${playerTwoDeck.length} cards.|`)
 		checkForWinner();
 	} else if (playerOneActive[0].rank < playerTwoActive[0].rank) {
-		playerTwoDeck.push(playerOneActive[0],playerTwoActive[0]);
+		playerTwoDeck.push(...playerOneActive, ...playerTwoActive);
 		playerOneActive = [];
 		playerTwoActive = [];
-		console.log(`**Player 2 wins this round and now has ${playerOneDeck.length} cards!**`);
-		console.log(`|Player 1 now has ${playerTwoDeck.length} cards.|`)
+		console.log(`  **Player 2 wins this round and now has ${playerTwoDeck.length} cards!**`);
+		console.log(`  |Player 1 now has ${playerOneDeck.length} cards.|`)
 		checkForWinner();
 	} else {
 		war();
@@ -87,7 +96,15 @@ let tableArena = () => {
 
 //Check-War
 let checkWar = () => {
-	console.log("testing checkwar")
+	if (playerOneActive[0].rank > playerTwoActive[0].rank) {
+		playerOneDeck.push( ...playerOneActive, ...playerTwoActive);
+		playerOneActive = [];
+		playerTwoActive = [];
+	} else if (playerOneActive[0].rank < playerTwoActive[0].rank) {
+		playerTwoDeck.push( ...playerTwoActive, ...playerOneActive);
+		playerOneActive = [];
+		playerTwoActive = [];
+	}
 }	
 //End-Check-War
 
@@ -96,29 +113,17 @@ let checkWar = () => {
 let war = () => {
 	console.log("*********WAR!*********")
 	if (playerOneDeck.length < 4) {
-		console.log(`****Player 1 only has ${playerOneDeck.length} cards and does not have enough cards to continue. Player 2 has WON! GAME OVER!!****`)
+		console.log(`**Player 1 only has ${playerOneDeck.length} cards and does not have enough cards to continue. Player 2 has WON! GAME OVER!!**`)
 	} else if (playerTwoDeck.length < 4) {
-		console.log(`****Player 2 only has ${playerTWoDeck.length} cards and does not have enough cards to continue. Player 1 has WON! GAME OVER!!****`)
+		console.log(`**Player 2 only has ${playerTWoDeck.length} cards and does not have enough cards to continue. Player 1 has WON! GAME OVER!!**`)
 	} else {
-	playerOneActive.unshift(playerOneDeck[0])
-	playerOneDeck.shift();
-	playerTwoActive.unshift(playerTwoDeck[0])
-	playerTwoDeck.shift();
-	playerOneActive.unshift(playerOneDeck[0])
-	playerOneDeck.shift();
-	playerTwoActive.unshift(playerTwoDeck[0])
-	playerTwoDeck.shift();
-	playerOneActive.unshift(playerOneDeck[0])
-	playerOneDeck.shift();
-	playerTwoActive.unshift(playerTwoDeck[0])
-	playerTwoDeck.shift();
-	playerOneActive.unshift(playerOneDeck[0])
-	playerOneDeck.shift();
-	playerTwoActive.unshift(playerTwoDeck[0])
-	playerTwoDeck.shift();
-	console.log(`Player 1 put 3 cards facedown and flipped over a ${playerOneActive[0].value} of ${playerOneActive[0].suit}`)
-	console.log(`Player 2 put 3 cards facedown and flipped over a ${playerTwoActive[0].value} of ${playerTwoActive[0].suit}`)
-	checkWar();
+		flipPlayerCards2();
+		flipPlayerCards2();
+		flipPlayerCards2();
+		flipPlayerCards2();
+		console.log(`Player 1 placed 3 cards faceDown and flipped over a ${playerOneActive[0].value} of ${playerOneActive[0].suit}`)
+		console.log(`Player 2 placed 3 cards faceDown and flipped over a ${playerTwoActive[0].value} of ${playerTwoActive[0].suit}`)
+		checkWar();
 	}
 }
 //End-War
