@@ -47,6 +47,7 @@ let flipPlayerCards = () => {
 }
 //End-Card-Flips
 
+
 //Card-Flips-2
 let flipPlayerCards2 = () => {
 	playerOneActive.unshift(playerOneDeck[0])
@@ -56,6 +57,7 @@ let flipPlayerCards2 = () => {
 	console.log(`--WAR--`)
 }
 //End-Card-Flips-2
+
 
 //Check-for-Winner
 let checkForWinner = () => {
